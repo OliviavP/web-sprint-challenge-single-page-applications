@@ -9,7 +9,10 @@ export default function Homepage() {
   }
   return (
     <div className='wrapper'>
-      <img src='pizza.jpg' alt='Image of a pizza' />
+      <img
+        src='https://www.pngarts.com/files/3/Pizza-Free-PNG-Image.png'
+        alt='Image of a pizza'
+      />
       <button onClick={routeToOrder} className='order-button'>
         Order Now!
       </button>

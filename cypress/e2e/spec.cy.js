@@ -1,4 +1,4 @@
-describe('empty spec', () => {
+describe('order test', () => {
   it('passes', () => {
     cy.visit('https://example.cypress.io')
   })

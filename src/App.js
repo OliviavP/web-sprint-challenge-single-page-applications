@@ -70,30 +70,28 @@ const App = () => {
   return (
     <div className='app'>
       <h1 className='header'>Lambda Eats</h1>
-      <BrowserRouter>
-        <div className='links'>
-          <Link to='/' id='home'>
-            Home
-          </Link>
-          <Link to='/pizza' id='order-pizza'>
-            Order Pizza
-          </Link>
-        </div>
-        <Switch>
-          <Route exact path='/pizza'>
-            <Form
-              values={values}
-              change={orderChange}
-              submit={submitOrder}
-              disabled={disabled}
-              errors={errors}
-            />
-          </Route>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <div className='links'>
+        <Link to='/' id='pizza-form'>
+          Home
+        </Link>
+        <Link to='/pizza' id='order-pizza'>
+          Order Pizza
+        </Link>
+      </div>
+      <Switch>
+        <Route exact path='/pizza'>
+          <Form
+            values={values}
+            change={orderChange}
+            submit={submitOrder}
+            disabled={disabled}
+            errors={errors}
+          />
+        </Route>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+      </Switch>
     </div>
   )
 }
