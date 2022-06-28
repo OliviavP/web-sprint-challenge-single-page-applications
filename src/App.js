@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import Home from './components/home'
 import Form from './components/order'
 import schema from './validation/formSchema'
 import axios from 'axios'
 import * as yup from 'yup'
+import styled from 'styled-components'
+
+const StyledTitle = styled.h1`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: gold;
+  }
+`
 
 const initialFormValues = {
   name: '',
@@ -69,14 +81,10 @@ const App = () => {
   }, [values])
   return (
     <div className='app'>
-      <h1 className='header'>Lambda Eats</h1>
+      <StyledTitle className='header'>Lambda Eats</StyledTitle>
       <div className='links'>
-        <Link to='/' id='pizza-form'>
-          Home
-        </Link>
-        <Link to='/pizza' id='order-pizza'>
-          Order Pizza
-        </Link>
+        <Link to='/' id='pizza-form'></Link>
+        <Link to='/pizza' id='order-pizza'></Link>
       </div>
       <Switch>
         <Route exact path='/pizza'>

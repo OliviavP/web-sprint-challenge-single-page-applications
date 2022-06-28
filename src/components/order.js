@@ -1,4 +1,46 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const StyledH1 = styled.h1`
+  color: darkred;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: gold;
+  }
+`
+
+const StyleTitle = styled.h2`
+  color: darkred;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: gold;
+  }
+`
+const StyleInput = styled.input`
+  border-radius: 8px;
+`
+
+const StyleSpec = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const StyleButton = styled.button`
+  background-color: darkred;
+  border-radius: 8px;
+  color: gold;
+  margin-top: 2%;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: gold;
+    color: darkred;
+  }
+`
 
 export default function OrderForm(props) {
   const { values, submit, change, errors } = props
@@ -16,13 +58,13 @@ export default function OrderForm(props) {
   return (
     <form className='form' onSubmit={onSubmit} id='pizza-form'>
       <div className='main'>
-        <h1>Create Your Pizza!</h1>
+        <StyledH1>Create Your Pizza!</StyledH1>
       </div>
       <div className='inputs'>
-        <div className='name'>
-          <h2>Enter Name</h2>
+        <StyleSpec className='name'>
+          <StyleTitle>Name</StyleTitle>
           <div>{errors.name}</div>
-          <input
+          <StyleInput
             id='name-input'
             type='text'
             name='name'
@@ -30,9 +72,9 @@ export default function OrderForm(props) {
             value={values.name}
             onChange={onChange}
           />
-        </div>
-        <div className='size'>
-          <h2>Pizza Size</h2>
+        </StyleSpec>
+        <StyleSpec className='size'>
+          <StyleTitle>Pizza Size</StyleTitle>
           <select
             name='size'
             value={values.size}
@@ -45,9 +87,9 @@ export default function OrderForm(props) {
             <option value='12'>12 inches</option>
             <option value='14'>14 inches</option>
           </select>
-        </div>
-        <div className='toppings'>
-          <h2>Toppings</h2>
+        </StyleSpec>
+        <StyleSpec className='toppings'>
+          <StyleTitle>Toppings</StyleTitle>
           <label>
             Cheese
             <input
@@ -84,21 +126,21 @@ export default function OrderForm(props) {
               onChange={onChange}
             />
           </label>
-        </div>
-        <div className='Special'>
-          <h2>Special Instructions</h2>
-          <input
+        </StyleSpec>
+        <StyleSpec className='Special'>
+          <StyleTitle>Special Instructions</StyleTitle>
+          <StyleInput
             type='text'
             name='special'
             value={values.special}
             onChange={onChange}
             id='special-text'
           />
-        </div>
+        </StyleSpec>
       </div>
-      <div className='submit'>
-        <button id='order-button'>Order Now</button>
-      </div>
+      <StyleSpec className='submit'>
+        <StyleButton id='order-button'>Order Now</StyleButton>
+      </StyleSpec>
     </form>
   )
 }
