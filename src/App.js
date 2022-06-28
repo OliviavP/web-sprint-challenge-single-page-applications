@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, BrowserRouter } from 'react-router-dom'
 import Home from './components/home'
 import Form from './components/order'
 import schema from './validation/formSchema'
+import axios from 'axios'
+import * as yup from 'yup'
 
 const initialFormValues = {
   name: '',
@@ -33,14 +35,14 @@ const App = () => {
       .post('https://reqres.in/api/orders', addNew)
       .then((res) => {
         setOrder([res.data, ...order])
-        setFormValues(initialFormValues)
+        setValues(initialFormValues)
       })
       .catch((err) => console.error(err))
   }
 
   const orderChange = (name, value) => {
     yup
-      .reach(chema, name)
+      .reach(schema, name)
       .validate(value)
       .then(() => {
         setErrors({ ...errors, [name]: '' })
@@ -68,28 +70,30 @@ const App = () => {
   return (
     <div className='app'>
       <h1 className='header'>Lambda Eats</h1>
-      <div className='links'>
-        <Link t0='/' id='home'>
-          Home
-        </Link>
-        <Link to='/pizza' id='order-pizza'>
-          Order Now!
-        </Link>
-      </div>
-      <Switch>
-        <Route exact path={'/pizza'}>
-          <Form
-            values={values}
-            change={orderChange}
-            submit={submitOrder}
-            disabled={disabled}
-            errors={errors}
-          />
-        </Route>
-        <Route path='/'>
-          <Home />
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <div className='links'>
+          <Link to='/' id='home'>
+            Home
+          </Link>
+          <Link to='/pizza' id='order-pizza'>
+            Order Pizza
+          </Link>
+        </div>
+        <Switch>
+          <Route exact path='/pizza'>
+            <Form
+              values={values}
+              change={orderChange}
+              submit={submitOrder}
+              disabled={disabled}
+              errors={errors}
+            />
+          </Route>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 }
